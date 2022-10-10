@@ -22,10 +22,19 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
-    runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'mysql:mysql-connector-java'
+    runtimeOnly 'com.h2database:h2' //h2 데이터베이스
+    runtimeOnly 'org.mariadb.jdbc:mariadb-java-client' // MariaDB
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    //json
+    implementation group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+    //jsonDB
+    implementation 'com.vladmihalcea:hibernate-types-52:2.18.0'
+    //junit5
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+
 }
 
 tasks.named('test') {
