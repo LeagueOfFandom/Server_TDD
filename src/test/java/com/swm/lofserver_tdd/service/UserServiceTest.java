@@ -38,4 +38,21 @@ class UserServiceTest {
         assertEquals(saveUser.getEmail(), userRequestDto.getEmail());
     }
 
+    @Test
+    void 중복회원예외(){
+        //given
+        //그냥 바로 userEntity에 유저를 넣는 것인지
+        //아니면 userRequestDto로 넣어서 실제 서비스처럼 구현하는지
+        UserRequestDto userRequestDto1 = new UserRequestDto("hello@gmail.com", "hello1234", "hello", "hello.png");
+        UserRequestDto userRequestDto2 = new UserRequestDto("hello@gmail.com", "huuu1234", "hello2", "hello2.png");
+
+        //when
+        userService.createUser(userRequestDto1);
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> {
+            userService.createUser(userRequestDto2);
+        });
+
+        //then
+        assertEquals("이미 존재하는 회원입니다.", e.getMessage());
+    }
 }
